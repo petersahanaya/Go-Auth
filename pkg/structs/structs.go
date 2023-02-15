@@ -7,3 +7,9 @@ type User struct {
 	Username string
 	Password string
 }
+
+type DecodedJWT struct {
+	Id       float64
+	Username string
+	Expires  float64
+}

@@ -11,6 +11,7 @@ import (
 
 func SignUp(res http.ResponseWriter, req *http.Request) {
 	if req.Method == "POST" {
+		res.Header().Set("Content-Type", "application/json")
 		var user structs.User
 
 		err := json.NewDecoder(req.Body).Decode(&user)
@@ -32,7 +33,7 @@ func SignUp(res http.ResponseWriter, req *http.Request) {
 
 		structs.DB = append(structs.DB, structs.User{Id: len(structs.DB) + 1, Username: user.Username, Password: hashPass})
 
-		fmt.Fprint(res, `{"msg" : User Register Success...}`)
+		fmt.Fprint(res, `{"msg" : "User Register Success"}`)
 		fmt.Println(structs.DB)
 		return
 	} else {
